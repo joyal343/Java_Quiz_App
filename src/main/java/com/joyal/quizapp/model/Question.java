@@ -1,4 +1,4 @@
-package com.joyal.quizapp;
+package com.joyal.quizapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import lombok.Data;
 public class Question { // Needs to match table name
     // Camel Casing in Java but _ to separate words in DB
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String questionTitle;
     private String option1;
