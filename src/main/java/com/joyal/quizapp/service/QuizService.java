@@ -2,10 +2,7 @@ package com.joyal.quizapp.service;
 
 import com.joyal.quizapp.dao.QuestionDao;
 import com.joyal.quizapp.dao.QuizDao;
-import com.joyal.quizapp.model.Question;
-import com.joyal.quizapp.model.QuestionWrapper;
-import com.joyal.quizapp.model.QuestionWrapper2;
-import com.joyal.quizapp.model.Quiz;
+import com.joyal.quizapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -44,5 +41,18 @@ public class QuizService {
             questions.add(qw);
         }
         return new ResponseEntity<>(questions,HttpStatus.OK);
+    }
+
+    public ResponseEntity<Integer> calculateResult(Integer id, List<QuizSubmission> answers) {
+        Quiz quiz = quizDao.findById(id).get();
+        List<Question> questions = quiz.getQuestions();
+        int right = 0;
+        int i=0;
+        for (QuizSubmission qs : answers){
+            if (qs.getAnswer().equals(questions.get(i).getRightAnswer()))
+                right++;
+            i++;
+        }
+        return new ResponseEntity<>(right,HttpStatus.OK);
     }
 }

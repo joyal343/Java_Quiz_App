@@ -1,6 +1,7 @@
 package com.joyal.quizapp.controller;
 
 import com.joyal.quizapp.model.QuestionWrapper2;
+import com.joyal.quizapp.model.QuizSubmission;
 import com.joyal.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,4 +24,9 @@ public class QuizController {
     public ResponseEntity<List<QuestionWrapper2>> getQuiz(@PathVariable Integer id){
         return quizService.getQuiz(id);
     }
-}
+
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> calculateResult(@PathVariable Integer id, @RequestBody List<QuizSubmission> answers){
+        return quizService.calculateResult(id,answers);
+    }
+ }
