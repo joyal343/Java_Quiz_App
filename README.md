@@ -1,4 +1,4 @@
-Added Code for a Quiz App
+### Quiz App in JAVA
 
 This has two controllers - Quiz and Questions
 
